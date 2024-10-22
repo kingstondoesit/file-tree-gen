@@ -1,4 +1,4 @@
-# Ultimate File Tree Generator
+# File Tree Generator
 
 ![file-tree-gen demo](./Assets/treegen-demo.png)
 
@@ -13,8 +13,8 @@
 - **Markdown Output**: Outputs a neatly formatted Markdown file representing the project structure.
 - **Cross-Platform Compatibility**: Works on any operating device that supports python.
 
-- Generates a visual representation of the directory structure.
-- Excludes specified directories.
+<!-- - Generates a visual representation of the directory structure.
+- Excludes specified directories. -->
 
 ## Requirements
 
