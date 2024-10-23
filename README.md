@@ -45,7 +45,7 @@
 - `excluded_dirs`: Specify directories to exclude from the file tree generation process. Separate multiple directories with commas. Default directory = `'node_modules'`.
 - `exclude-entire-dirs`: Default value is `False`. Set to `True` to exclude entire directories instead of just their subdirectories.
 
-For example:
+Example:
 
    ``` python
    # Define directories to exclude
