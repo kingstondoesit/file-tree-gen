@@ -4,13 +4,13 @@ import os
 project_root = os.getcwd()  # Gets the current working directory
 
 # Define directories to exclude
-excluded_dirs = [".venv", ".vscode"]
+excluded_dirs = ["node_modules"]
 exclude_entire_dirs = False  # Set to True to exclude entire directories, False to exclude only subdirectories
 
 # Initialize the output files
 raw_path_file = "raw-path.txt"
 paths_file = "paths.py"
-markdown_file = "movie-tree.md"
+markdown_file = "file-tree.md"
 
 # Clear previous content in the output files
 for file in [raw_path_file, paths_file, markdown_file]:
