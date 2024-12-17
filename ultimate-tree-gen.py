@@ -4,7 +4,7 @@ import os
 project_root = os.getcwd()  # Gets the current working directory
 
 # Define directories to exclude
-excluded_dirs = ["node_modules"]
+excluded_dirs = [".git"]
 exclude_entire_dirs = False  # Set to True to exclude entire directories, False to exclude only subdirectories
 
 # Initialize the output files
@@ -137,6 +137,10 @@ def main():
 
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(f"# File Tree Structure\n\n{project_root}\n\n{tree_str}\n")
+
+    # Remove the temporary/unneeded files. Comment out code if you want to keep them.
+    for file in [raw_path_file, paths_file,]:
+        os.remove(file)
 
     print(f"File tree structure written to {output_file}")
 
