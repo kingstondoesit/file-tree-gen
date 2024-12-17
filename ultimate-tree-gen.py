@@ -4,7 +4,7 @@ import os
 project_root = os.getcwd()  # Gets the current working directory
 
 # Define directories to exclude
-excluded_dirs = [".git"]
+excluded_dirs = ["node_modules"]
 exclude_entire_dirs = False  # Set to True to exclude entire directories, False to exclude only subdirectories
 
 # Initialize the output files

@@ -1,6 +1,6 @@
 # File Tree Generator
 
-`ultimate-tree-gen` is a (customizable) python script that traverses a system directory and generates a structured file tree in Markdown format. It saves users looking to textually represent their project's file tree ample time and effort. The generated tree text is copiable and can be used anywhere, for any purpose.
+`ultimate-tree-gen` is a (customizable) python script that traverses a system directory and generates a structured file tree in Markdown format. It saves users looking to textually represent their project's file tree ample time and effort.
 
 ![file-tree-gen demo](./Assets/treegen-demo.png)
 
