@@ -7,6 +7,9 @@ project_root = os.getcwd()  # Gets the current working directory
 excluded_dirs = ["node_modules"]
 exclude_entire_dirs = False  # Set to True to exclude entire directories, False to exclude only subdirectories
 
+# Add excluded file extensions
+excluded_extensions = [".png", ".jpg", ".jpeg"]  # Add any extensions you want to exclude
+
 # Initialize the output files
 raw_path_file = "raw-path.txt"
 paths_file = "paths.py"
@@ -20,6 +23,14 @@ for file in [raw_path_file, paths_file, markdown_file]:
 # Function to check if a path should be excluded
 def should_exclude(path):
     relative_path = os.path.relpath(path, project_root)  # Get the relative path from the project root
+    
+    # Check file extension
+    if os.path.isfile(path):
+        file_extension = os.path.splitext(path)[1].lower()
+        if file_extension in excluded_extensions:
+            return True, False
+
+    # Check directories
     for dir in excluded_dirs:
         # Exclude the entire directory and its contents if exclude_entire_dirs is True
         if relative_path.startswith(dir):
