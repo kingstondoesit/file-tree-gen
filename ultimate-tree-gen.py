@@ -1,7 +1,27 @@
 import os
+import sys
 
 # Set the project root path
-project_root = os.getcwd()  # Gets the current working directory
+
+# Check if an argument is provided
+if len(sys.argv) > 1:
+    argument = sys.argv[1]
+    absolute_path = os.path.abspath(argument)  # Convert to absolute path
+    
+    # Check if the path exists
+    if os.path.exists(absolute_path):
+        # Check if it's a directory
+        if os.path.isdir(absolute_path):
+            project_root = absolute_path  # Use the absolute path
+        else:
+            print("Error: The provided argument is a file, not a directory.")
+            sys.exit(1)
+    else:
+        print("Error: The provided path does not exist.")
+        sys.exit(1)
+else:
+    # No argument provided, use the current working directory
+    project_root = os.getcwd()  # Already absolute
 
 # Define directories to exclude
 excluded_dirs = ["node_modules"]
@@ -13,7 +33,7 @@ excluded_extensions = [".png", ".jpg", ".jpeg"]  # Add any extensions you want t
 # Initialize the output files
 raw_path_file = "raw-path.txt"
 paths_file = "paths.py"
-markdown_file = "file-tree.md"
+markdown_file = "file-tree_" + os.path.basename(project_root) + ".md"
 
 # Clear previous content in the output files
 for file in [raw_path_file, paths_file, markdown_file]:
