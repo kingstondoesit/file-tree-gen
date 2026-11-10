@@ -45,6 +45,8 @@ A (customizable) python script for generating a file trees in Markdown format.
 - `excluded_dirs`: Specify directories to exclude from the file tree generation process. Default directory = `'node_modules'`. Separate multiple directories with commas.
 - `exclude-entire-dirs`: Default value is `False`. Set to `True` to exclude directories entirely from the file tree render, instead of just their subdirectories.
 
+Excluded names are matched as complete directory names at any depth in the project, whether the project root is supplied as a command-line argument or defaults to the current directory.
+
 For example:
 
    ``` python
