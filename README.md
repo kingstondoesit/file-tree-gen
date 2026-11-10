@@ -1,6 +1,6 @@
 # File Tree Generator
 
-A (customizable) python script for generating a file trees in Markdown format.
+A (customizable) python script for generating file trees in Markdown format.
 
 ![file-tree-gen demo](./Assets/treegen-demo.png)
 
