@@ -24,7 +24,7 @@ else:
     project_root = os.getcwd()  # Already absolute
 
 # Define directories to exclude
-excluded_dirs = ["node_modules"]
+excluded_dirs = ["node_modules", ".git", ".venv", "__pycache__"]  # Add any directories you want to exclude
 exclude_entire_dirs = False  # Set to True to exclude entire directories, False to exclude only subdirectories
 
 # Add excluded file extensions
@@ -42,23 +42,29 @@ for file in [raw_path_file, paths_file, markdown_file]:
 
 # Function to check if a path should be excluded
 def should_exclude(path):
-    relative_path = os.path.relpath(path, project_root)  # Get the relative path from the project root
-    
+    relative_parts = os.path.relpath(path, project_root).split(os.sep)
+
     # Check file extension
     if os.path.isfile(path):
         file_extension = os.path.splitext(path)[1].lower()
         if file_extension in excluded_extensions:
             return True, False
 
-    # Check directories
-    for dir in excluded_dirs:
-        # Exclude the entire directory and its contents if exclude_entire_dirs is True
-        if relative_path.startswith(dir):
-            if exclude_entire_dirs:
-                return True, False  # Exclude the entire directory
-            else:
-                is_main_dir = relative_path == dir  # Allow only the main directory
-                return not is_main_dir, is_main_dir  # Exclude subdirectories, but keep the main directory
+    is_directory = os.path.isdir(path)
+    directory_parts = relative_parts if is_directory else relative_parts[:-1]
+    excluded_names = {name.strip() for name in excluded_dirs if name.strip()}
+    matching_indexes = [
+        index for index, part in enumerate(directory_parts)
+        if part in excluded_names
+    ]
+
+    if matching_indexes:
+        if exclude_entire_dirs:
+            return True, False
+        if not is_directory or any(index < len(directory_parts) - 1 for index in matching_indexes):
+            return True, False
+        return False, True
+
     return False, False
 
 # Generate raw-path.txt and paths.py
