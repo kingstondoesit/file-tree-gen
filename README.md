@@ -40,6 +40,7 @@ A (customizable) python script for generating file trees in Markdown format.
 
    # Scan a specific directory by relative path
    python ultimate-tree-gen.py "./<a subfolder>"
+   python ultimate-tree-gen.py "../<a parent folder>"
 
    # Scan a specific directory by absolute path
    python ultimate-tree-gen.py "C:\path\to\project"
@@ -64,7 +65,7 @@ For example:
    exclude_entire_dirs = True  
    ```
 
-The above configuration in [ultimate-tree-gen.py](./ultimate-tree-gen.py) will exclude the `node_modules` and `.venv` directories entirely from the file tree.
+The above configuration in [ultimate-tree-gen.py](./ultimate-tree-gen.py) will exclude the `node_modules`, `.git` and `.venv` directories entirely from the file tree.
 
 ## Contributing
 
