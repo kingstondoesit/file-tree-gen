@@ -7,6 +7,11 @@ import sys
 if len(sys.argv) > 1:
     argument = sys.argv[1]
     absolute_path = os.path.abspath(argument)  # Convert to absolute path
+
+    if not os.path.exists(absolute_path) and not os.path.isabs(argument):
+        script_relative_path = os.path.abspath(os.path.join(os.path.dirname(__file__), argument))
+        if os.path.exists(script_relative_path):
+            absolute_path = script_relative_path
     
     # Check if the path exists
     if os.path.exists(absolute_path):
@@ -24,7 +29,7 @@ else:
     project_root = os.getcwd()  # Already absolute
 
 # Define directories to exclude
-excluded_dirs = ["node_modules", ".git", ".venv", "__pycache__"]  # Add any directories you want to exclude
+excluded_dirs = ["node_modules"]  # Add any directories you want to exclude
 exclude_entire_dirs = False  # Set to True to exclude entire directories, False to exclude only subdirectories
 
 # Add excluded file extensions
@@ -177,7 +182,8 @@ def main():
 
     # Remove the temporary/unneeded files. Comment out code if you want to keep them.
     for file in [raw_path_file, paths_file,]:
-        os.remove(file)
+        if os.path.exists(file):
+            os.remove(file)
 
     print(f"File tree structure written to {output_file}")
 

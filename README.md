@@ -34,16 +34,23 @@ A (customizable) python script for generating a file trees in Markdown format.
 
 3. Run the script:
 
-   ``` bash
+   ``` python
+   # Scan the current working directory
    python ultimate-tree-gen.py
+
+   # Scan a specific directory by relative path
+   python ultimate-tree-gen.py "./<a subfolder>"
+
+   # Scan a specific directory by absolute path
+   python ultimate-tree-gen.py "C:\path\to\project"
    ```
 
-4. The script generates a Markdown file `file-tree.md` in the root directory with the path location and a hierachical representation of its content(s).
+4. The script generates a Markdown file `file-tree_<project-folder-name>.md` in the root directory with the path location and a hierachical representation of its content(s).
 
 ## Customizable Options
 
-- `excluded_dirs`: Specify directories to exclude from the file tree generation process. Default directory = `'node_modules'`. Separate multiple directories with commas.
-- `exclude-entire-dirs`: Default value is `False`. Set to `True` to exclude directories entirely from the file tree render, instead of just their subdirectories.
+- `excluded_dirs`: Specify directories to exclude from the file tree generation process. Default directory = `"node_modules"`. Separate multiple directories with commas.
+- `exclude_entire_dirs`: Default value is `False`. Set to `True` to exclude directories entirely from the file tree render, instead of just their subdirectories.
 
 Excluded names are matched as complete directory names at any depth in the project, whether the project root is supplied as a command-line argument or defaults to the current directory.
 
@@ -51,20 +58,13 @@ For example:
 
    ``` python
    # Define directories to exclude (Automatically excludes their sub-directories)
-   excluded_dirs = ["node_modules", ".venv"]
+   excluded_dirs = ["node_modules", ".git", ".venv"]
 
    # Set exclusion mode
    exclude_entire_dirs = True  
-
-   # specify output files
-   raw_path_file = "raw-path.txt"
-   paths_file = "paths.py"
-   markdown_file = "file-tree.md"
    ```
 
-The above configuration in [ultimate-file-tree.py](./ultimate-tree-gen.py) will exclude the `node_modules` and `.venv` directories entirely from the file tree.
-
-You can modify the output file variables and specify your preferred output file names.
+The above configuration in [ultimate-tree-gen.py](./ultimate-tree-gen.py) will exclude the `node_modules` and `.venv` directories entirely from the file tree.
 
 ## Contributing
 
